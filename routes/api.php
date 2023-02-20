@@ -18,18 +18,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+//Obtenemos las pistas.
 Route::get('/pistas', [\App\Http\Controllers\Api\ControllerPistas::class,'index']);
 
-Route::get('/pistas/{pista}', [\App\Http\Controllers\Api\ControllerPistas::class, 'show']);
-
+//Creamos una pista.
 Route::post('/pistas', [\App\Http\Controllers\Api\ControllerPistas::class,'store'])->name('guardarPista');
 
-Route::get('/crear-pista', [\App\Http\Controllers\Api\ControllerPistas::class,'create']);
-
-Route::get('/modificar-pista/{pista}', [\App\Http\Controllers\Api\ControllerPistas::class,'edit']);
-
+//Modificamos una pista.
 Route::put('/pistas/{pista}', [\App\Http\Controllers\Api\ControllerPistas::class, 'update']);
 Route::patch('/pistas/{pista}', [\App\Http\Controllers\Api\ControllerPistas::class, 'update']);
 
+//Eliminamos una pista.
 Route::delete('/pistas/{pista}', [\App\Http\Controllers\Api\ControllerPistas::class, 'destroy']);
