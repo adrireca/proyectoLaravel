@@ -21,6 +21,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //Obtenemos las pistas.
 Route::get('/pistas', [\App\Http\Controllers\Api\ControllerPistas::class,'index']);
 
+//Mostrar una pista
+Route::get('/pistas/{pista}', [\App\Http\Controllers\Api\ControllerPistas::class, 'show']);
+
 //Creamos una pista.
 Route::post('/pistas', [\App\Http\Controllers\Api\ControllerPistas::class,'store'])->name('guardarPista');
 
