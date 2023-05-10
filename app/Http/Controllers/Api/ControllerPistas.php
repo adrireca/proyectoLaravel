@@ -116,6 +116,6 @@ class ControllerPistas extends Controller
         } catch (\Throwable $e) {
             return "La pista no se ha eliminado";
         }
-        return "La pista se ha eliminado correctamente";
+        return response('', 204);
     }
 }
