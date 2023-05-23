@@ -9,6 +9,13 @@ class Pista extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['luz','tipoPista','precioLuz','cubierta','disponible', 'precioPista'];
+    protected $fillable = [
+        'luz',
+        'tipoPista',
+        'precioLuz',
+        'cubierta',
+        'disponible',
+        'precioPista',
+    ];
 
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCourtRequest;
+use App\Http\Resources\CourtResource;
 use Illuminate\Http\Request;
 use App\Models\Pista;
 use Illuminate\Validation\Rule;
@@ -28,9 +30,10 @@ class ControllerPistas extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCourtRequest $request)
     {
 
+        /*
         $validacion=Validator::make($request->all(),[
             'luz'=>'boolean',
             'tipoPista'=>Rule::in(['tenis', 'padel', 'futbol', 'futbolSala']),
@@ -43,7 +46,22 @@ class ControllerPistas extends Controller
         if($validacion->fails()){
             return response("Error en la validación de una pista",Response::HTTP_BAD_REQUEST);
         }
+        */
 
+        $data = $request->validated();
+        /* @var \App\Models\Pista $pista */
+        $pista = Pista::create([
+            'luz' => $data['luz'],
+            'disponible' => $data['disponible'],
+            'cubierta' => $data['cubierta'],
+            'precioLuz' => $data['precioLuz'],
+            'precioPista' => $data['precioPista'],
+            'tipoPista' => $data['tipoPista'],
+        ]);
+
+        return response(new CourtResource($pista), 201);
+
+        /*
         $pista = new Pista();
         $pista->luz = $request->luz ?? 0;
         $pista->tipoPista = $request->tipoPista;
@@ -55,6 +73,7 @@ class ControllerPistas extends Controller
         $pista->save();
 
         return response("Se ha almacenado la pista correctamente");
+        */
 
     }
 
@@ -76,8 +95,14 @@ class ControllerPistas extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pista $pista)
+    public function update(StoreCourtRequest $request, Pista $pista)
     {
+        $data = $request->validated();
+        $pista->update($data);
+
+        return new CourtResource($pista);
+
+        /*
         $validacion=Validator::make($request->all(),[
             'luz'=>'boolean',
             'tipoPista'=>Rule::in(['tenis', 'padel', 'futbol', 'futbolSala']),
@@ -101,6 +126,7 @@ class ControllerPistas extends Controller
             $pista->save();
             return response("Pista modificada");
         }
+        */
     }
 
     /**
