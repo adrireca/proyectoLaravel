@@ -17,9 +17,14 @@ class ControllerUser extends Controller
      */
     public function index()
     {
+        return $users = UserResource::collection(
+            User::all()
+        );
+        /*
         return UserResource::collection(
             User::query()->orderBy('id', 'desc')->paginate(10)
         );
+        */
     }
 
     /**
