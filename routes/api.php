@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ControllerUser;
 use App\Http\Controllers\Api\ContactController;
+use App\Http\Controllers\Api\CourtReservationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -53,3 +54,6 @@ Route::post('/login', [AuthController::class, 'login']);
 
 //
 Route::post('/contact', [ContactController::class, 'store']);
+
+//
+Route::get('/reservas', [CourtReservationController::class, 'index']);
